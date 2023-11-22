@@ -1,0 +1,26 @@
+planning everything here
+
+we want to create the main page with about 3 columns, 6 countries, 
+we can filter those specific countries in the main page design into a seperate array, to make things easier, to make things even easier, we can use an api and use query things to filter those countries
+then we can also create, 4 different pages for the different filters
+we can filter the african/european,asian etc... countries into different arrays
+
+
+WHEN WE CLICK ON THE CARD, WE WANT TO REFRESH EVERY OTHER COUNTRY CARD AND DISPLAY THE ONE CLICKED ONLY WITH OTHER INFO
+
+API STUFF:
+-WE WANT TO FIRST GET THE MAIN PAGE OBJECTS
+-THEN WE CAN GET ALL THE OBJECTS
+-THEN WE CAN GET OBJECTS BASED ON THEIR REGIONS: AFRICA, ASIA, EUROPE, OCEANIA, AMERICA
+
+TO ALLOW THE COUNTRY CARDS TO BE CHANGED WE CAN USE A SWITCH STATEMENT AND A FUNCTION, DEPENDING ON WHAT WE CLICK ON THE OPTIONS BTNS (TOP RIGHT),
+WE CAN HAVE THE CARDS CHANGE DEPENDING ON WHATS CLICKED, THIS CAN ALSO BE USED TO MANIPULATE WHAT WE WILL MAP THROUGH WHEN CREATING THE DIVS
+for swtich statement we can have a usestate track what btn is clicked, if the mainpage btn is clicked have that show in the switch statement and then we can have the filtered divs show up
+
+different cases for switch statement:
+1) 'main-page'
+2) 'Africa'
+3) 'Americas'
+4) 'Asia'
+5) 'Oceania'
+6) 'Europe'
