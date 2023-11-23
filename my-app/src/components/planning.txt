@@ -24,3 +24,5 @@ different cases for switch statement:
 4) 'Asia'
 5) 'Oceania'
 6) 'Europe'
+
+

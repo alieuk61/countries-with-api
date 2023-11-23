@@ -1,28 +1,47 @@
-import {getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData} from "./apiCalls";
-import { useState } from "react";
+import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
+import { useState, useEffect } from "react";
 
-function MainPage(){
+function MainPage() {
 
-    const [ currentPage, changePage ] = useState('main-page')
+    const [currentPage, changePage] = useState('main-page')
+    const [data, setData] = useState([]);
 
-    const AmericaData = getDataAmericas();
-    const africaData = getDataAfrica();
-    const europeData = getDataEurope();
-    const asiaData = getDataAsia();
-    const oceaniaData = getDataOceania();
-    const mainData = getMainPageData();
     
-    console.log(AmericaData, africaData, europeData, asiaData, oceaniaData, mainData)
+    function pageChanger(e) {
+        changePage(e.target.textContent)
+    }
 
-    // const dataFilter = (currentPage) => {
-    //     switch (currentPage) {
-                // case 'Africa':
-                //     return africaData.data
-                // break;
-    //     }
-    // }
+    useEffect(() => {
+        const fetchData = async () => {
+            let newData;
+            switch (currentPage) {
+                case 'Africa':
+                    newData = await getDataAfrica();
+                    break;
+                case 'America':
+                    newData = await getDataAmericas();
+                    break;
+                case 'Asia':
+                    newData = await getDataAsia();
+                    break;
+                case 'Europe':
+                    newData = await getDataEurope();
+                    break;
+                case 'Oceania':
+                    newData = await getDataOceania();
+                    break;
+                default:
+                    newData = await getMainPageData();
+            }
+            setData(newData.data || []);
+        };
 
-    return(
+        fetchData();
+    }, [currentPage]);
+
+    console.log(data)
+
+    return (
         <section className='bg-very-l-grey px-[75px] py-[50px] bg-slate-700 h-screen w-full'>
             <div>
                 <input className="shadow-lg" type="text" />
@@ -31,16 +50,37 @@ function MainPage(){
                     <ion-icon className='cursor-pointer' name="chevron-down-outline" size='small' ></ion-icon>
                 </div>
                 <div className="cursor-pointer w-[170px] absolute">
-                    <div>Africa</div>
-                    <div>America</div>
-                    <div>Asia</div>
-                    <div>Europe</div>
-                    <div>Oceania</div>
+                    <div
+                        onClick={(e) => {
+                            pageChanger(e)
+                        }}
+                    >Africa</div>
+                    <div
+                        onClick={(e) => {
+                            pageChanger(e)
+                        }}
+                    >America</div>
+                    <div
+                        onClick={(e) => {
+                            pageChanger(e)
+                        }}
+                    >Asia</div>
+                    <div
+                        onClick={(e) => {
+                            pageChanger(e)
+                        }}
+                    >Europe</div>
+                    <div
+                        onClick={(e) => {
+                            pageChanger(e)
+                        }}
+                    >Oceania</div>
                 </div>
             </div>
 
-            {/* here we ill get the main page countries array, loop through it and then make a grid col temp of 4 */}
-
+            {data.map((country, index) => {
+                
+            })}
         </section>
     )
 }
