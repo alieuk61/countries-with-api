@@ -1,5 +1,6 @@
 import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
 import { useState, useEffect } from "react";
+import ActionAreaCard from './props/card-prop'
 
 function MainPage() {
 
@@ -13,27 +14,25 @@ function MainPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            let newData;
             switch (currentPage) {
                 case 'Africa':
-                    newData = await getDataAfrica();
+                    setData(await getDataAfrica()); //in this async function we set the state when the promise has been fulfilled, so that it doesnt try to set state before the promise has been fulfilled
                     break;
                 case 'America':
-                    newData = await getDataAmericas();
+                    setData(await getDataAmericas());
                     break;
                 case 'Asia':
-                    newData = await getDataAsia();
+                    setData(await getDataAsia());
                     break;
                 case 'Europe':
-                    newData = await getDataEurope();
+                    setData(await getDataEurope());
                     break;
                 case 'Oceania':
-                    newData = await getDataOceania();
+                    setData(await getDataOceania());
                     break;
                 default:
-                    newData = await getMainPageData();
+                    setData(await getMainPageData());
             }
-            setData(newData.data || []);
         };
 
         fetchData();
@@ -49,7 +48,7 @@ function MainPage() {
                     Filter by Region
                     <ion-icon className='cursor-pointer' name="chevron-down-outline" size='small' ></ion-icon>
                 </div>
-                <div className="cursor-pointer w-[170px] absolute">
+                <div className="cursor-pointer w-[170px] absolute z-10">
                     <div
                         onClick={(e) => {
                             pageChanger(e)
@@ -77,10 +76,19 @@ function MainPage() {
                     >Oceania</div>
                 </div>
             </div>
-
+            
+            <div className="grid grid-cols-4 gap-4">
             {data.map((country, index) => {
-                
+                return(
+                    <ActionAreaCard
+                    key={index}
+                    countryImage={country.flags.png}
+                    countryName={country.name.common}
+                    countryFlagAlt={country.flags.alt}
+                    />
+                )
             })}
+            </div>
         </section>
     )
 }

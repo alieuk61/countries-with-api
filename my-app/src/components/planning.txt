@@ -17,12 +17,24 @@ TO ALLOW THE COUNTRY CARDS TO BE CHANGED WE CAN USE A SWITCH STATEMENT AND A FUN
 WE CAN HAVE THE CARDS CHANGE DEPENDING ON WHATS CLICKED, THIS CAN ALSO BE USED TO MANIPULATE WHAT WE WILL MAP THROUGH WHEN CREATING THE DIVS
 for swtich statement we can have a usestate track what btn is clicked, if the mainpage btn is clicked have that show in the switch statement and then we can have the filtered divs show up
 
-different cases for switch statement:
-1) 'main-page'
-2) 'Africa'
-3) 'Americas'
-4) 'Asia'
-5) 'Oceania'
-6) 'Europe'
+//filter
 
+for filter stuff, we can have the input detect change, for everythimg we type in
 
+//
+let responses = await Promise.all([ axios.get('https://restcountries.com/v3.1/name/germany'),
+        axios.get('https://restcountries.com/v3.1/name/america'),
+        axios.get('https://restcountries.com/v3.1/name/brazil'),
+        axios.get('https://restcountries.com/v3.1/name/iceland'),
+        axios.get('https://restcountries.com/v3.1/name/afghanistan'),
+        axios.get('https://restcountries.com/v3.1/alpha/AX'),
+        axios.get('https://restcountries.com/v3.1/name/albania'),
+        axios.get('https://restcountries.com/v3.1/name/algeria')])
+
+        const dataArray = responses.map(response => response.data);
+
+        const combinedArray = [].concat(...dataArray);
+
+        return combinedArray
+
+        console.log(response.map(list => arr.concat(...list)))
