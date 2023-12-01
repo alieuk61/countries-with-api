@@ -21,20 +21,20 @@ for swtich statement we can have a usestate track what btn is clicked, if the ma
 
 for filter stuff, we can have the input detect change, for everythimg we type in
 
-//
-let responses = await Promise.all([ axios.get('https://restcountries.com/v3.1/name/germany'),
-        axios.get('https://restcountries.com/v3.1/name/america'),
-        axios.get('https://restcountries.com/v3.1/name/brazil'),
-        axios.get('https://restcountries.com/v3.1/name/iceland'),
-        axios.get('https://restcountries.com/v3.1/name/afghanistan'),
-        axios.get('https://restcountries.com/v3.1/alpha/AX'),
-        axios.get('https://restcountries.com/v3.1/name/albania'),
-        axios.get('https://restcountries.com/v3.1/name/algeria')])
+//WHAT TO DO WHEN WE CLICK A CARD
 
-        const dataArray = responses.map(response => response.data);
+we will be sent to another page, we will have already captured the 'country', that was clicked and its details will be saved in a useState hook
+with that we can dynamically change the page to whatever had been clicked
+also we need to make another component for the back btn
 
-        const combinedArray = [].concat(...dataArray);
 
-        return combinedArray
+CREATE ANOTHER COMPONENT FOR THE BACK BTN, THIS WILL TAKE US BACK TO THE HOME PAGE
 
-        console.log(response.map(list => arr.concat(...list)))
+-MAKE A COMPONENT FOR THE BORDERS WHICH WILL ALSO RETURN THE DATA OF THE COUNTRIES THAT ARE CLICKED
+
+ANOTHER IDEA:
+if the promise hasnt been sent yet, have skeletons replace the cards?? we will have 8 skeletons for when the page is loading
+
+PSEUDOCODE:
+IMPORT SKELETON FROM SKELETON COMP,
+WHEN JUST RENDERED,LOADED IN, WE WANT DATA TO = 8 SO WE CAN HAVE 8 SKELETONS LAID OUT BEFORE DATA IS SET TO THE API OBJECTS

@@ -8,7 +8,7 @@ function Header (){
 
     return(
     <section className="w-full h-[24px] px-[16px] py-[32px] flex bg-white box-border shadow-lg shadow-black-500/50">
-        <div className='grid justify-between self-center w-full h-fit grid-cols-auto-auto mx-4'>
+            <div className='grid justify-between self-center w-full h-fit grid-cols-auto-auto mx-[60px]'>
     <h2 
     className='text-black text-xl pointer'
     onClick={() => {

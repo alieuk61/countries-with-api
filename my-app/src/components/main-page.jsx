@@ -1,12 +1,12 @@
 import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
 import { useState, useEffect } from "react";
+import SearchBar from './searchBar'
 import ActionAreaCard from './props/card-prop'
 
 function MainPage() {
 
     const [currentPage, changePage] = useState('main-page')
     const [data, setData] = useState([]);
-
     
     function pageChanger(e) {
         changePage(e.target.textContent)
@@ -41,35 +41,35 @@ function MainPage() {
     console.log(data)
 
     return (
-        <section className='bg-very-l-grey px-[75px] py-[50px] bg-slate-700 h-screen w-full'>
-            <div>
-                <input className="shadow-lg" type="text" />
-                <div className="cursor-pointer w-[170px]">
+        <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
+            <div className='flex justify-between'>
+                <SearchBar/>
+                <div className="cursor-pointer w-[170px] flex justify-around items-center bg-white rounded">
                     Filter by Region
                     <ion-icon className='cursor-pointer' name="chevron-down-outline" size='small' ></ion-icon>
                 </div>
-                <div className="cursor-pointer w-[170px] absolute z-10">
-                    <div
+                <div className="cursor-pointer w-[170px] absolute right-[75px] top-[175px] z-10 bg-white rounded p-[5px]">
+                    <div className='pl-[10px]'
                         onClick={(e) => {
                             pageChanger(e)
                         }}
                     >Africa</div>
-                    <div
+                    <div className='pl-[10px]'
                         onClick={(e) => {
                             pageChanger(e)
                         }}
                     >America</div>
-                    <div
+                    <div className='pl-[10px]'
                         onClick={(e) => {
                             pageChanger(e)
                         }}
                     >Asia</div>
-                    <div
+                    <div className='pl-[10px]'
                         onClick={(e) => {
                             pageChanger(e)
                         }}
                     >Europe</div>
-                    <div
+                    <div className='pl-[10px]'
                         onClick={(e) => {
                             pageChanger(e)
                         }}
@@ -77,14 +77,18 @@ function MainPage() {
                 </div>
             </div>
             
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-4 mt-[50px]">
             {data.map((country, index) => {
                 return(
                     <ActionAreaCard
                     key={index}
-                    countryImage={country.flags.png}
+                    countryFlag={country.flags.png}
                     countryName={country.name.common}
                     countryFlagAlt={country.flags.alt}
+                    population={country.population}
+                    region={country.region}
+                    // capital={country.capital[0]}
+                    countryData={country}
                     />
                 )
             })}
@@ -93,4 +97,5 @@ function MainPage() {
     )
 }
 
-export default MainPage;
+
+export default MainPage
