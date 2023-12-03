@@ -7,10 +7,19 @@ function MainPage() {
 
     const [currentPage, changePage] = useState('main-page')
     const [data, setData] = useState([]);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [showDetails, setShowDetails] = useState(false);
     
     function pageChanger(e) {
         changePage(e.target.textContent)
+        // setSelectedCountry(null); // Reset selected country when changing the page
+        // setShowDetails(false);
     }
+
+    // const handleCardClick = (countryData) => {
+    //     setSelectedCountry(countryData);
+    //     setShowDetails(true);
+    // };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,8 +46,6 @@ function MainPage() {
 
         fetchData();
     }, [currentPage]);
-
-    console.log(data)
 
     return (
         <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
@@ -88,7 +95,7 @@ function MainPage() {
                     population={country.population}
                     region={country.region}
                     // capital={country.capital[0]}
-                    countryData={country}
+                    // onClick={() => handleCardClick(country)}
                     />
                 )
             })}

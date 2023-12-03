@@ -5,24 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import Details from '../details'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 function ActionAreaCard(props) {
-    const [countryClicked, setCountryClicked] = useState(0);
-    
-    useEffect( () => {
-        setCountryClicked(props.countryData)
-    }, [] )
 
     return (
-        <Link to='CountryDetails'>
+        <NavLink to={{ pathname: '/CountryDetails', state: { countryClicked } }}>
         <Card 
         sx={{ maxWidth: 345 }}
-        onClick={() => {
-            setCountryClicked(props.countryData)
-            console.log(countryClicked)
-        }}
         >
             <CardActionArea>
                 <CardMedia
@@ -43,7 +33,7 @@ function ActionAreaCard(props) {
                 </CardContent>
             </CardActionArea>
         </Card>
-        </Link>
+        </NavLink>
     );
 }
 
