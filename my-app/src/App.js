@@ -11,7 +11,7 @@ function App() {
     <Header/>
     <Routes>
         <Route path='/countries-with-api' element={<MainPage />} />
-        <Route path='/countries-with-api/CountryDetails' element={<Details />} />
+        <Route path='/details' element={<Details />} />
       </Routes>
     </BrowserRouter>
   );

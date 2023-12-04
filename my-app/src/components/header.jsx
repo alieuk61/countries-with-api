@@ -11,10 +11,10 @@ function Header (){
             <div className='grid justify-between self-center w-full h-fit grid-cols-auto-auto mx-[60px]'>
     <h2 
     className='text-black text-xl pointer'
-    onClick={() => {
-        // changePage('main-page')
-        // console.log(currentPage)
-    }}
+    // onClick={() => {//when we click on this we want to go back to the home page
+    //     changePage('main-page')
+    //     // console.log(currentPage)
+    // }}
     >Where in the world?</h2>
     <p className='text-black pointer'>{theme} mode</p>
         </div>

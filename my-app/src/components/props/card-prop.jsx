@@ -10,7 +10,7 @@ import {NavLink} from 'react-router-dom'
 function ActionAreaCard(props) {
 
     return (
-        <NavLink to={{ pathname: '/CountryDetails', state: { countryClicked } }}>
+        // <NavLink to={{ pathname: '/details' }}>
         <Card 
         sx={{ maxWidth: 345 }}
         >
@@ -28,12 +28,12 @@ function ActionAreaCard(props) {
                     <Typography variant="body2" color="text.secondary">
                         <div className='flex'><h3>Population:</h3><p>{props.population}</p></div>
                         <div className='flex'><h3>Region:</h3><p>{props.region}</p></div>
-                        <div className='flex'><h3>Capital:</h3><p>{}</p></div>
+                        <div className='flex'><h3>Capital:</h3><p>capital</p></div>
                     </Typography>
                 </CardContent>
             </CardActionArea>
         </Card>
-        </NavLink>
+        // </NavLink>
     );
 }
 

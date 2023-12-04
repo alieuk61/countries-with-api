@@ -5,9 +5,9 @@ export default function SearchBar(){
     <TextField 
     className='shadow-lg bg-white w-[450px]' 
     id="outlined-basic" variant="outlined"
-    onChange={(e) => {
-        console.log(e.target.value)
-    }}
+    // onChange={(e) => {
+    //     // console.log(e.target.value)
+    // }}
     />
     )
 };

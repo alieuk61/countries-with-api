@@ -1,5 +1,5 @@
 import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import SearchBar from './searchBar'
 import ActionAreaCard from './props/card-prop'
 
@@ -7,19 +7,21 @@ function MainPage() {
 
     const [currentPage, changePage] = useState('main-page')
     const [data, setData] = useState([]);
-    const [selectedCountry, setSelectedCountry] = useState(null);
-    const [showDetails, setShowDetails] = useState(false);
+    const [countryClicked, setCountryClicked] = useState(false);
+    const countriesDiv = useRef()
+    const detailsDiv = useRef()
     
     function pageChanger(e) {
-        changePage(e.target.textContent)
-        // setSelectedCountry(null); // Reset selected country when changing the page
-        // setShowDetails(false);
+        changePage(e.target.textContent);
     }
 
-    // const handleCardClick = (countryData) => {
-    //     setSelectedCountry(countryData);
-    //     setShowDetails(true);
-    // };
+    function handleClicker(){
+        if (countryClicked){
+            countriesDiv.current.style.display = 'none'
+            detailsDiv.current.style.display = 'block'
+        }
+    }
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -83,8 +85,13 @@ function MainPage() {
                     >Oceania</div>
                 </div>
             </div>
+
+            <div className="hidden" ref={detailsDiv}>
+                    <h1>hellooo</h1>
+            </div>
             
-            <div className="grid grid-cols-4 gap-4 mt-[50px]">
+            <div className="grid grid-cols-4 gap-4 mt-[50px]" ref={countriesDiv}>
+
             {data.map((country, index) => {
                 return(
                     <ActionAreaCard
@@ -95,7 +102,10 @@ function MainPage() {
                     population={country.population}
                     region={country.region}
                     // capital={country.capital[0]}
-                    // onClick={() => handleCardClick(country)}
+                    onClick={() => {
+                        setCountryClicked(true);
+                        handleClicker();
+                    }}
                     />
                 )
             })}

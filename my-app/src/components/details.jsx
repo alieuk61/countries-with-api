@@ -1,12 +1,12 @@
 import MainPage from "./main-page"
 import ActionAreaCard from './props/card-prop'
 import { useState } from "react";
-import { countryClickedRef } from './props/card-prop'
 
 export default function Details (){
     return(
-        <section className="h-full w-full bg-very-l-grey">
+        <section className="h-screen w-full bg-very-l-grey"> 
             {/* <img src={} alt="" /> */}
+            <h1>Hello World</h1>
         </section>
     )
 }
