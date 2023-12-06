@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState, useEffect} from 'react'
+import {useRef, useEffect} from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -8,11 +8,13 @@ import { CardActionArea } from '@mui/material';
 import {NavLink} from 'react-router-dom'
 
 function ActionAreaCard(props) {
-
     return (
         // <NavLink to={{ pathname: '/details' }}>
+        
         <Card 
         sx={{ maxWidth: 345 }}
+        onClick={props.onPress}
+        
         >
             <CardActionArea>
                 <CardMedia

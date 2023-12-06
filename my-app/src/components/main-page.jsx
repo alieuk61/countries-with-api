@@ -7,7 +7,8 @@ function MainPage() {
 
     const [currentPage, changePage] = useState('main-page')
     const [data, setData] = useState([]);
-    const [countryClicked, setCountryClicked] = useState(false);
+    const countryClicked = useRef(false);
+    const countryinformation = useRef()
     const countriesDiv = useRef()
     const detailsDiv = useRef()
     
@@ -15,11 +16,12 @@ function MainPage() {
         changePage(e.target.textContent);
     }
 
-    function handleClicker(){
-        if (countryClicked){
-            countriesDiv.current.style.display = 'none'
-            detailsDiv.current.style.display = 'block'
-        }
+    function handleClicker(country) {
+        countryClicked.current = true;
+        countryinformation.current = country
+        countriesDiv.current.style.display = 'none';
+        // detailsDiv.current.style.display = 'block';
+        // console.log(countryinformation, countryinformation.current.population); // This might log the previous state due to closure
     }
 
 
@@ -86,12 +88,15 @@ function MainPage() {
                 </div>
             </div>
 
-            <div className="hidden" ref={detailsDiv}>
+            {countryClicked.current && (
+                <div className="" >
                     <h1>hellooo</h1>
-            </div>
+                    <h2>{countryinformation.current.population}</h2>
+                </div>
+            )}
             
             <div className="grid grid-cols-4 gap-4 mt-[50px]" ref={countriesDiv}>
-
+            
             {data.map((country, index) => {
                 return(
                     <ActionAreaCard
@@ -101,10 +106,10 @@ function MainPage() {
                     countryFlagAlt={country.flags.alt}
                     population={country.population}
                     region={country.region}
+                    countryInfo={country}
                     // capital={country.capital[0]}
-                    onClick={() => {
-                        setCountryClicked(true);
-                        handleClicker();
+                    onPress={() => {                    
+                        handleClicker(country);
                     }}
                     />
                 )
