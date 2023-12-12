@@ -1,6 +1,8 @@
 import TextField from '@mui/material/TextField';
+import {useState} from 'react';
 
 export default function SearchBar(){
+
     return(
     <TextField 
     className='shadow-lg bg-white w-[450px]' 

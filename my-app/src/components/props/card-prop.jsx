@@ -9,7 +9,7 @@ import {NavLink} from 'react-router-dom'
 
 function ActionAreaCard(props) {
     return (
-        // <NavLink to={{ pathname: '/details' }}>
+        <NavLink to={{ pathname: '/details' }}>
         
         <Card 
         sx={{ maxWidth: 345 }}
@@ -35,7 +35,7 @@ function ActionAreaCard(props) {
                 </CardContent>
             </CardActionArea>
         </Card>
-        // </NavLink>
+        </NavLink>
     );
 }
 

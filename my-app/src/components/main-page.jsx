@@ -1,29 +1,26 @@
 import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, createContext } from "react";
 import SearchBar from './searchBar'
 import ActionAreaCard from './props/card-prop'
 
+export const CountryContext = createContext();
+
 function MainPage() {
 
-    const [currentPage, changePage] = useState('main-page')
+    const [currentPage, changePage] = useState('main-page');
     const [data, setData] = useState([]);
-    const countryClicked = useRef(false);
-    const countryinformation = useRef()
-    const countriesDiv = useRef()
-    const detailsDiv = useRef()
-    
+    const [countryData, setCountryData] = useState({});
+    const countriesDiv = useRef();
+    const detailsDiv = useRef();
+
     function pageChanger(e) {
         changePage(e.target.textContent);
     }
-
+    
     function handleClicker(country) {
-        countryClicked.current = true;
-        countryinformation.current = country
+        setCountryData(country)
         countriesDiv.current.style.display = 'none';
-        // detailsDiv.current.style.display = 'block';
-        // console.log(countryinformation, countryinformation.current.population); // This might log the previous state due to closure
-    }
-
+       }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -52,6 +49,7 @@ function MainPage() {
     }, [currentPage]);
 
     return (
+    <CountryContext.Provider value={[countryData, setCountryData]}>
         <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
             <div className='flex justify-between'>
                 <SearchBar/>
@@ -59,6 +57,7 @@ function MainPage() {
                     Filter by Region
                     <ion-icon className='cursor-pointer' name="chevron-down-outline" size='small' ></ion-icon>
                 </div>
+                {/* TODO: NEED TO MAKE THIS AN INDIV COMPONENT */}
                 <div className="cursor-pointer w-[170px] absolute right-[75px] top-[175px] z-10 bg-white rounded p-[5px]">
                     <div className='pl-[10px]'
                         onClick={(e) => {
@@ -87,13 +86,6 @@ function MainPage() {
                     >Oceania</div>
                 </div>
             </div>
-
-            {countryClicked.current && (
-                <div className="" >
-                    <h1>hellooo</h1>
-                    <h2>{countryinformation.current.population}</h2>
-                </div>
-            )}
             
             <div className="grid grid-cols-4 gap-4 mt-[50px]" ref={countriesDiv}>
             
@@ -116,8 +108,8 @@ function MainPage() {
             })}
             </div>
         </section>
+        </CountryContext.Provider>
     )
 }
-
 
 export default MainPage
