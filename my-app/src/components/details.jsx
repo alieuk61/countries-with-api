@@ -4,11 +4,11 @@ import { useState, useContext } from "react";
 import {CountryContext} from './main-page'
 
 export default function Details (){
-    const [countryData, setCountryData] = useContext(CountryContext);
+    const { countryData, setCountryData } = useContext(CountryContext);
     return(
         <section className="h-screen w-full bg-very-l-grey"> 
-            {/* <img src={countryData.flags.png} alt="" /> */}
-            {/* <h1>{countryData.population}</h1> */}
+            <img src={countryData && countryData.flags.png} alt="" />
+            <h1>{countryData && countryData.population}</h1>
         </section>
     )
 }

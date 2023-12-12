@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, createContext } from "react";
 import SearchBar from './searchBar'
 import ActionAreaCard from './props/card-prop'
 
-export const CountryContext = createContext();
+export const CountryContext = createContext({});
 
 function MainPage() {
 
@@ -49,7 +49,7 @@ function MainPage() {
     }, [currentPage]);
 
     return (
-    <CountryContext.Provider value={[countryData, setCountryData]}>
+    <CountryContext.Provider value={{countryData, setCountryData}}>
         <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
             <div className='flex justify-between'>
                 <SearchBar/>
