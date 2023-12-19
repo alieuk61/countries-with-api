@@ -1,55 +1,26 @@
 import { getDataEurope, getDataAfrica, getDataAsia, getDataOceania, getDataAmericas, getMainPageData } from "./apiCalls";
-import { useState, useEffect, useRef, createContext } from "react";
+import { useState, useEffect, useRef, createContext, useContext } from "react";
 import SearchBar from './searchBar'
 import ActionAreaCard from './props/card-prop'
+import { CountryContext } from "../context/CountryContext";
 
-export const CountryContext = createContext({});
 
 function MainPage() {
 
-    const [currentPage, changePage] = useState('main-page');
-    const [data, setData] = useState([]);
-    const [countryData, setCountryData] = useState({});
+    const { data, countryData, setCountryData, pageChanger } = useContext(CountryContext)
+
     const countriesDiv = useRef();
     const detailsDiv = useRef();
 
-    function pageChanger(e) {
-        changePage(e.target.textContent);
-    }
     
+
     function handleClicker(country) {
         setCountryData(country)
         countriesDiv.current.style.display = 'none';
        }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            switch (currentPage) {
-                case 'Africa':
-                    setData(await getDataAfrica()); //in this async function we set the state when the promise has been fulfilled, so that it doesnt try to set state before the promise has been fulfilled
-                    break;
-                case 'America':
-                    setData(await getDataAmericas());
-                    break;
-                case 'Asia':
-                    setData(await getDataAsia());
-                    break;
-                case 'Europe':
-                    setData(await getDataEurope());
-                    break;
-                case 'Oceania':
-                    setData(await getDataOceania());
-                    break;
-                default:
-                    setData(await getMainPageData());
-            }
-        };
-
-        fetchData();
-    }, [currentPage]);
 
     return (
-    <CountryContext.Provider value={{countryData, setCountryData}}>
         <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
             <div className='flex justify-between'>
                 <SearchBar/>
@@ -92,7 +63,7 @@ function MainPage() {
             {data.map((country, index) => {
                 return(
                     <ActionAreaCard
-                    key={index}
+                    key={country.name.common}
                     countryFlag={country.flags.png}
                     countryName={country.name.common}
                     countryFlagAlt={country.flags.alt}
@@ -101,14 +72,14 @@ function MainPage() {
                     countryInfo={country}
                     // capital={country.capital[0]}
                     onPress={() => {                    
-                        handleClicker(country);
+                        console.log(country)
+                        setCountryData(country)
                     }}
                     />
                 )
             })}
             </div>
         </section>
-        </CountryContext.Provider>
     )
 }
 
