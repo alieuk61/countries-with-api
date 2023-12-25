@@ -28,11 +28,11 @@ function CountryContextProvider({ children }) {
   useEffect(() => {
     fetchCountry()
 
-  }, [countryInput])
+    if (!data.length && !countryInput) {
+      changeData(api.getMainPageData)
+    }
 
-  if(!data.length || !countryInput) {
-    changeData(api.getMainPageData)
-}
+  }, [countryInput])
 
   useEffect(() => {
     const fetchData = async () => {

@@ -26,7 +26,7 @@ function MainPage() {
   }
 
   return (
-    <section className='bg-very-l-grey px-[75px] py-[50px]  h-screen w-full'>
+    <section className='bg-very-l-grey px-[75px] py-[50px] h-screen w-full'>
       <div className='flex justify-between'>
         <SearchBar />
         <div onClick={() => setOpen(e => !e)} className='cursor-pointer w-[170px] flex justify-around items-center bg-white rounded'>
