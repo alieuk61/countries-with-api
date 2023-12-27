@@ -71,6 +71,15 @@ async function getCountry(name) {
   }
 }
 
+async function getAlpha(alphaCode){
+  try {
+    const response = await axios.get(`https://restcountries.com/v3.1/alpha/${alphaCode}`)
+    return response.data
+  } catch (error) {
+    console.log('Error Message: ', error.message)
+  }
+}
+
 export {
   getDataEurope,
   getDataAfrica,
@@ -78,5 +87,8 @@ export {
   getDataOceania,
   getDataAmericas,
   getMainPageData,
-  getCountry
+  getCountry,
+  getAlpha
 }
+
+// NEED TO SHORTEN CODE

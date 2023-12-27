@@ -21,10 +21,9 @@ function CountryContextProvider({ children }) {
     }
   }
 
-
   const changeData = async(request) => setData(await request());
 
-
+  
   useEffect(() => {
     fetchCountry()
 

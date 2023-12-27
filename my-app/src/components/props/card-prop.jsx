@@ -14,7 +14,7 @@ function ActionAreaCard(props) {
         <Card 
         sx={{ maxWidth: 345 }}
         onClick={props.onPress}
-        
+        className='w-[265px]'
         >
             <CardActionArea>
                 <CardMedia
@@ -24,13 +24,13 @@ function ActionAreaCard(props) {
                     alt={props.countryFlagAlt}
                 />
                 <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h5" component="div" className='font-Nunito'>
                         {props.countryName}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        <div className='flex'><h3>Population:</h3><p>{props.population}</p></div>
-                        <div className='flex'><h3>Region:</h3><p>{props.region}</p></div>
-                        <div className='flex'><h3>Capital:</h3><p>capital</p></div>
+                        <div className='flex font-Nunito'><h3 className='text-black'>Population: </h3><p>{props.population}</p></div>
+                        <div className='flex font-Nunito'><h3 className='text-black'>Region: </h3><p>{props.region}</p></div>
+                        <div className='flex font-Nunito'><h3 className='text-black'>Capital: </h3><p>capital</p></div>
                     </Typography>
                 </CardContent>
             </CardActionArea>

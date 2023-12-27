@@ -11,6 +11,7 @@ export default function SearchBar(){
     className='shadow-lg bg-white w-[450px]' 
     id="outlined-basic" variant="outlined"
     value={countryInput}
+    placeholder='Search for a country...'
     onChange={(e) => {
         setCountryInput(e.target.value)
     }}

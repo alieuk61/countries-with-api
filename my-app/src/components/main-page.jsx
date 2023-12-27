@@ -26,7 +26,7 @@ function MainPage() {
   }
 
   return (
-    <section className='bg-very-l-grey px-[75px] py-[50px] h-screen w-full'>
+    <section className='bg-very-l-grey font-Nunito px-[75px] py-[50px] h-screen w-full'>
       <div className='flex justify-between'>
         <SearchBar />
         <div onClick={() => setOpen(e => !e)} className='cursor-pointer w-[170px] flex justify-around items-center bg-white rounded'>
@@ -84,7 +84,7 @@ function MainPage() {
         ) : null}
       </div>
 
-      <div className='grid grid-cols-4 gap-4 mt-[50px]' ref={countriesDiv}>
+      <div className='grid grid-cols-4 gap-8 mt-[50px]' ref={countriesDiv}>
         {data.map((country, index) => {
           return (
             <ActionAreaCard
